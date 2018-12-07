@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="Entity.BeerTypeDescription" table="beerTypeDescription" catalog="projectHibernate">
+
+        <id name="beerTypeIdDesc" type="int">
+            <column name="BEER_TYPE_ID"  />
+            <generator class="foreign">
+                <param name="property">beerType</param>
+            </generator>
+        </id>
+
+        <property name="beerTypeIdDesc" type="int" insert="false" update="false">
+            <column name="BEER_TYPE_ID" length="10" not-null="true" unique="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="1000" not-null="true" unique="true" />
+        </property>
+        <one-to-one name="beerType" constrained="true" class="Entity.BeerType" />
+    </class>
+
+</hibernate-mapping>

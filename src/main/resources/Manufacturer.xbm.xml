@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="Entity.Manufacturer" table="manufacturer" catalog="projectHibernate">
+        <id name="manufacturerId" type="int">
+            <column name="MANUFACTURER_ID"  />
+            <generator class="identity"  />
+        </id>
+
+        <property name="manufacturerId" type="int" insert="false" update="false">
+            <column name="MANUFACTURER_ID" length="10" not-null="true" unique="true" />
+        </property>
+        <property name="manufacturerName" type="string">
+            <column name="NAME" length="30" not-null="true" unique="true" />
+        </property>
+
+        <set name="beers" inverse="true" cascade="all">
+            <key column="MANUFACTURER_ID" not-null="true" />
+            <one-to-many class="Entity.Beer"/>
+        </set>
+    </class>
+
+
+</hibernate-mapping>

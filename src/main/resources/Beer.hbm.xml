@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="Entity.Beer" table="beer" catalog="projectHibernate">
+       <id name="ID" type="java.lang.Integer">
+           <column name="ID" />
+           <generator class="native" />
+       </id>
+       <property name="name" type="string">
+           <column name="NAME" length="20" not-null="true" unique="true" />
+       </property>
+       <property name="description" type="string">
+           <column name="DESCRIPTION" length="20" not-null="true" unique="true" />
+       </property>
+       <property name="country" type="string">
+           <column name="COUNTRY" length="20" not-null="true" unique="true" />
+       </property>
+       <property name="alc" type="double">
+           <column name="ALC" length="20" not-null="true" unique="true" />
+       </property>
+       <property name="beerTypeId" type="int" insert="false" update="false">
+           <column name="BEER_TYPE_ID" length="10" not-null="true" unique="true" />
+       </property>
+       <property name="manufacturerId" type="int" insert="false" update="false">
+           <column name="MANUFACTURER_ID" length="10" not-null="true" unique="true" />
+       </property>
+       <property name="packageTypeId" type="int" insert="false" update="false">
+           <column name="PACKAGING_TYPE_ID" length="10" not-null="true" unique="true" />
+       </property>
+
+        <many-to-one name="beerType" class="Entity.BeerType"
+                     column="BEER_TYPE_ID" not-null="true"/>
+        <many-to-one name="packaging" class="Entity.Packaging"
+                     column="PACKAGING_TYPE_ID" not-null="true"/>
+        <many-to-one name="manufacturer" class="Entity.Manufacturer"
+                     column="MANUFACTURER_ID" not-null="true"/>
+   </class>
+
+</hibernate-mapping>
